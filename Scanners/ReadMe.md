@@ -7,4 +7,6 @@ In this toy project, I will be implementing a recognizer to accept a six-charact
 Read Below for some info on Scanners
 
 ## FINITE AUTOMATON ##
-A finite automaton (FA) is a way to describe the constraints of your recognizer.
+A finite automaton (FA) is a way to describe the constraints & requirements of your recognizer.
+
+I will create a FA based on the description: "A recognizer to accept a six-character identifier consisting of an alphabetic character followed by zero to five alphanumeric characters."
