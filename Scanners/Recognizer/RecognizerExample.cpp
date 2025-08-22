@@ -23,7 +23,7 @@ enum class state{
 // };
 
 // FIXME: fix the params
-state getCurrentState(char currentCar)
+state getCurrentState(char currentChar)
 {
    // how do we get the current state?
    // Our states are s1-s6
@@ -31,9 +31,26 @@ state getCurrentState(char currentCar)
    // If it's not a valid alphanumeric character, return error state
    // else, progress to the next state in the enum
    // the CRUX of the regex problem, so let's read about it next.
+   if(!isAlphaNum)
+   {
+    return state::serror;
+   }
    return state::s0; // FIXME: This is a placeholder
 }
-// FIXME: Fix the params
+bool isAlphaNum(char currentChar)
+{
+   if ((currentChar >= 'a' && currentChar <= 'z') ||
+       (currentChar >= '0' && currentChar <= '9') ||
+       (currentChar >= 'A' && currentChar <= 'Z')) 
+    {
+     return true;
+   } 
+   else 
+   {
+     return false;
+   }
+}
+// FIXME: Fix the params?
 bool startRecognizer(int argc, char **argv)
 {
     char currentChar = argv[1][0]; // FIXME: 1 indexed because first is the executable (I think, need to check)
@@ -46,7 +63,7 @@ bool startRecognizer(int argc, char **argv)
     }
     
     int i = 0;
-    // CHECK IF CHARACTER ISNT LAST CHARACTER
+
     while(myState != state::serror && i < 6)
     {
       myState = getCurrentState(currentChar); //FIXME: SHOULD BE IMPLEMENTED
