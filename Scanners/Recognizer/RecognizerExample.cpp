@@ -1,6 +1,8 @@
 #include <iostream>
+#include <set>
 
-enum state{
+
+enum class state{
     s0, 
     s1, 
     s2, 
@@ -11,14 +13,15 @@ enum state{
     serror
 };
 
-enum acceptedStates{
-    s1,
-    s2,
-    s3, 
-    s4, 
-    s5,
-    s6
-};
+// these are the accepted states, but it won't be implemented
+// enum class acceptedStates{
+//     s1 = 1,
+//     s2 = 2,
+//     s3 = 3, 
+//     s4 = 4, 
+//     s5 = 5,
+//     s6 = 6
+// };
 
 int main(int argc, char **argv){
 
@@ -30,22 +33,23 @@ int main(int argc, char **argv){
 
 
     char currentChar = argv[1][0]; // FIXME: 1 indexed because first is the executable (I think, need to check)
+    int charLength = sizeof(argv[1]);
     state myState;
-    myState = s0;
+    myState = state::s0;
     if(sizeof(argv[1]) > 6 || sizeof(argv[1]) == 0)
     {
-        myState = serror;
+        myState = state::serror;
     }
     
     int i = 0;
-    while(myState != serror && character isnt the last character )
+    while(myState != state::serror && character isnt the last character )
     {
       state = getCurrentState() //FIXME: SHOULD BE IMPLEMENTED
       i +=1;
       currentChar = argv[1][i];
     }
 
-    if(myState is in acceptedStates ) // FIXME: Figure out how to check if two enum vals are same.. or replace the enums with sets?
+    if(myState != state::s0 || myState != state::serror )
     {
         return true;
     }
