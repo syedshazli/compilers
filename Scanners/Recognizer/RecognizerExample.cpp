@@ -1,5 +1,4 @@
 #include <iostream>
-#include <set>
 
 
 enum class state{
@@ -23,16 +22,10 @@ enum class state{
 //     s6 = 6
 // };
 
-int main(int argc, char **argv){
-
-    /**
-     * "A recognizer to accept a six-character identifier 
-     *  consisting of an alphabetic character 
-     *  followed by zero to five alphanumeric characters." 
-     */
-
-
-    char currentChar = argv[1][0]; // FIXME: 1 indexed because first is the executable (I think, need to check)
+// fix the params
+bool startRecognizer(int argc, char **argv)
+{
+char currentChar = argv[1][0]; // FIXME: 1 indexed because first is the executable (I think, need to check)
     int charLength = sizeof(argv[1]);
     state myState;
     myState = state::s0;
@@ -42,9 +35,10 @@ int main(int argc, char **argv){
     }
     
     int i = 0;
-    while(myState != state::serror && character isnt the last character )
+    // CHECK IF CHARACTER ISNT LAST CHARACTER
+    while(myState != state::serror)
     {
-      state = getCurrentState() //FIXME: SHOULD BE IMPLEMENTED
+      myState = getCurrentState(); //FIXME: SHOULD BE IMPLEMENTED
       i +=1;
       currentChar = argv[1][i];
     }
@@ -57,4 +51,20 @@ int main(int argc, char **argv){
     {
         return false;
     }
+}
+int main(int argc, char **argv){
+
+    /**
+     * "A recognizer to accept a six-character identifier 
+     *  consisting of an alphabetic character 
+     *  followed by zero to five alphanumeric characters." 
+     */
+
+    return startRecognizer(argc, argv);
+    
+}
+
+state getCurrentState()
+{
+
 }
