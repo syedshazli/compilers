@@ -22,7 +22,18 @@ enum class state{
 //     s6 = 6
 // };
 
-// fix the params
+// FIXME: fix the params
+state getCurrentState(char currentCar)
+{
+   // how do we get the current state?
+   // Our states are s1-s6
+   // take in the current character. 
+   // If it's not a valid alphanumeric character, return error state
+   // else, progress to the next state in the enum
+   // the CRUX of the regex problem, so let's read about it next.
+   return state::s0; // FIXME: This is a placeholder
+}
+// FIXME: Fix the params
 bool startRecognizer(int argc, char **argv)
 {
     char currentChar = argv[1][0]; // FIXME: 1 indexed because first is the executable (I think, need to check)
@@ -61,14 +72,4 @@ int main(int argc, char **argv){
      */
     return startRecognizer(argc, argv);
     
-}
-
-state getCurrentState(char currentCar)
-{
-   // how do we get the current state?
-   // Our states are s1-s6
-   // take in the current character. 
-   // If it's not a valid alphanumeric character, return error state
-   // else, progress to the next state in the enum
-   // the CRUX of the regex problem
 }
