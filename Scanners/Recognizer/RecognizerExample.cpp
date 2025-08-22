@@ -2,14 +2,14 @@
 
 
 enum class state{
+    serror,
     s0, 
     s1, 
     s2, 
     s3, 
     s4, 
     s5, 
-    s6, 
-    serror
+    s6
 };
 
 // these are the accepted states, but it won't be implemented
@@ -25,7 +25,7 @@ enum class state{
 // fix the params
 bool startRecognizer(int argc, char **argv)
 {
-char currentChar = argv[1][0]; // FIXME: 1 indexed because first is the executable (I think, need to check)
+    char currentChar = argv[1][0]; // FIXME: 1 indexed because first is the executable (I think, need to check)
     int charLength = sizeof(argv[1]);
     state myState;
     myState = state::s0;
@@ -36,9 +36,9 @@ char currentChar = argv[1][0]; // FIXME: 1 indexed because first is the executab
     
     int i = 0;
     // CHECK IF CHARACTER ISNT LAST CHARACTER
-    while(myState != state::serror)
+    while(myState != state::serror && i < 6)
     {
-      myState = getCurrentState(); //FIXME: SHOULD BE IMPLEMENTED
+      myState = getCurrentState(currentChar); //FIXME: SHOULD BE IMPLEMENTED
       i +=1;
       currentChar = argv[1][i];
     }
@@ -59,12 +59,16 @@ int main(int argc, char **argv){
      *  consisting of an alphabetic character 
      *  followed by zero to five alphanumeric characters." 
      */
-
     return startRecognizer(argc, argv);
     
 }
 
-state getCurrentState()
+state getCurrentState(char currentCar)
 {
-
+   // how do we get the current state?
+   // Our states are s1-s6
+   // take in the current character. 
+   // If it's not a valid alphanumeric character, return error state
+   // else, progress to the next state in the enum
+   // the CRUX of the regex problem
 }
