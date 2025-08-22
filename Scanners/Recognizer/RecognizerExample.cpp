@@ -22,21 +22,6 @@ enum class state{
 //     s6 = 6
 // };
 
-// FIXME: fix the params
-state getCurrentState(char currentChar)
-{
-   // how do we get the current state?
-   // Our states are s1-s6
-   // take in the current character. 
-   // If it's not a valid alphanumeric character, return error state
-   // else, progress to the next state in the enum
-   // the CRUX of the regex problem, so let's read about it next.
-   if(!isAlphaNum)
-   {
-    return state::serror;
-   }
-   return state::s0; // FIXME: This is a placeholder
-}
 bool isAlphaNum(char currentChar)
 {
    if ((currentChar >= 'a' && currentChar <= 'z') ||
@@ -50,6 +35,22 @@ bool isAlphaNum(char currentChar)
      return false;
    }
 }
+// FIXME: fix the params?
+state getCurrentState(char currentChar)
+{
+   // how do we get the current state?
+   // Our states are s1-s6
+   // take in the current character. 
+   // If it's not a valid alphanumeric character, return error state
+   // else, progress to the next state in the enum
+   // the CRUX of the regex problem, so let's read about it next.
+   if(!isAlphaNum(currentChar))
+   {
+    return state::serror;
+   }
+   return state::s0; // FIXME: This is a placeholder
+}
+
 // FIXME: Fix the params?
 bool startRecognizer(int argc, char **argv)
 {
@@ -80,13 +81,37 @@ bool startRecognizer(int argc, char **argv)
         return false;
     }
 }
+
+void printSuccess(bool myReturn)
+{
+if(myReturn)
+    {
+        std::cout<<"This is a valid string for the constraints we gave you!"<<std::endl;
+    }
+    else
+    {
+        std::cout<<"This string did not follow our rules, sorry."<<std::endl;
+    }
+}
 int main(int argc, char **argv){
 
     /**
      * "A recognizer to accept a six-character identifier 
      *  consisting of an alphabetic character 
      *  followed by zero to five alphanumeric characters." 
+     * Usage: clang++ RecognizerExample.cpp -o recognize
+     * ./recognize [STRING]
      */
-    return startRecognizer(argc, argv);
+    bool myReturn;
+    if(argc != 2)
+    {
+        myReturn = false;
+    }
+    else
+    {
+        myReturn = startRecognizer(argc, argv);
+    }
+    
+    printSuccess(myReturn);
     
 }
