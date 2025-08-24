@@ -27,7 +27,7 @@ bool isAlphaNum(char currentChar)
    if ((currentChar >= 'a' && currentChar <= 'z') ||
        (currentChar >= '0' && currentChar <= '9') ||
        (currentChar >= 'A' && currentChar <= 'Z')) 
-    {
+   {
      return true;
    } 
    else 
