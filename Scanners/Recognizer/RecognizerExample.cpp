@@ -44,11 +44,13 @@ state getCurrentState(char currentChar)
    // If it's not a valid alphanumeric character, return error state
    // else, progress to the next state in the enum
    // the CRUX of the regex problem, so let's read about it next.
+   
    if(!isAlphaNum(currentChar))
    {
     return state::serror;
    }
-   return state::s0; // FIXME: This is a placeholder
+   return state::s0; // FIXME: This is a placeholder. We still have not progressed to next state in the enum
+   // FIXME: ALSO add the new way to do FA's, which is sort of loop based or can accept different words
 }
 
 // FIXME: Fix the params?
@@ -100,7 +102,7 @@ int main(int argc, char **argv){
      *  consisting of an alphabetic character 
      *  followed by zero to five alphanumeric characters." 
      * Usage: clang++ RecognizerExample.cpp -o recognize
-     * ./recognize [STRING]
+     * ./recognize [1-6 LETTER STRING]
      */
     bool myReturn;
     if(argc != 2)
