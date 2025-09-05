@@ -55,29 +55,23 @@ state getCurrentState(char currentChar, state currentState)
 }
 
 // FIXME: Fix the params?
-bool startRecognizer(int argc, char **argv)
+bool startRecognizer(std::string inputString)
 {
-    char currentChar = argv[1][0]; // FIXME: 1 indexed because first is the executable (I think, need to check)
-    int charLength = sizeof(argv[1]);
+
     state myState;
     myState = state::s0;
-    //FIXME: incorrect, argv[1] is just one character
-    if(sizeof(argv[1]) > 6 || sizeof(argv[1]) == 0)
-    {
-        myState = state::serror;
-    }
     
     int i = 0;
 
     while(myState != state::serror && i < 6)
     {
-      myState = getCurrentState(currentChar, myState); //FIXME: SHOULD BE IMPLEMENTED
+      myState = getCurrentState(inputString[i], myState); //FIXME: SHOULD BE IMPLEMENTED
       if(myState == state::serror)
       {
         return false;
       }
       i +=1;
-      currentChar = argv[1][i];
+
     }
 
     if(myState != state::s0 || myState != state::serror )
@@ -105,6 +99,14 @@ bool convertArgvToString(char **argv, std::string &resultingString)
 {
 // convert the list of argv characters to a string. If the length is greater than 6 then call em out as false
 // otherwise return true.
+
+resultingString = std::string(argv[1]);
+std::cout<<resultingString;
+if (resultingString.length() > 6 || resultingString.length() == 0)
+{
+    return false;
+}
+return true;
 }
 int main(int argc, char **argv){
 
@@ -123,7 +125,7 @@ int main(int argc, char **argv){
     }
     else
     {
-        myReturn = startRecognizer(argc, argv);
+        myReturn = startRecognizer(inputString);
     }
     
     printSuccess(myReturn);
