@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <string>
 
 enum class state{
     serror,
@@ -36,19 +36,20 @@ bool isAlphaNum(char currentChar)
    }
 }
 // FIXME: fix the params?
-state getCurrentState(char currentChar)
+state getCurrentState(char currentChar, state currentState)
 {
    // how do we get the current state?
    // Our states are s1-s6
    // take in the current character. 
    // If it's not a valid alphanumeric character, return error state
    // else, progress to the next state in the enum
-   // the CRUX of the regex problem, so let's read about it next.
+
    
    if(!isAlphaNum(currentChar))
    {
     return state::serror;
    }
+
    return state::s0; // FIXME: This is a placeholder. We still have not progressed to next state in the enum
    // FIXME: ALSO add the new way to do FA's, which is sort of loop based or can accept different words
 }
@@ -60,6 +61,7 @@ bool startRecognizer(int argc, char **argv)
     int charLength = sizeof(argv[1]);
     state myState;
     myState = state::s0;
+    //FIXME: incorrect, argv[1] is just one character
     if(sizeof(argv[1]) > 6 || sizeof(argv[1]) == 0)
     {
         myState = state::serror;
@@ -69,7 +71,11 @@ bool startRecognizer(int argc, char **argv)
 
     while(myState != state::serror && i < 6)
     {
-      myState = getCurrentState(currentChar); //FIXME: SHOULD BE IMPLEMENTED
+      myState = getCurrentState(currentChar, myState); //FIXME: SHOULD BE IMPLEMENTED
+      if(myState == state::serror)
+      {
+        return false;
+      }
       i +=1;
       currentChar = argv[1][i];
     }
@@ -95,6 +101,11 @@ if(myReturn)
         std::cout<<"This string did not follow our rules, sorry."<<std::endl;
     }
 }
+bool convertArgvToString(char **argv, std::string &resultingString)
+{
+// convert the list of argv characters to a string. If the length is greater than 6 then call em out as false
+// otherwise return true.
+}
 int main(int argc, char **argv){
 
     /**
@@ -105,7 +116,8 @@ int main(int argc, char **argv){
      * ./recognize [1-6 LETTER STRING]
      */
     bool myReturn;
-    if(argc != 2)
+    std::string inputString;
+    if(argc != 2 || !convertArgvToString(argv, inputString))
     {
         myReturn = false;
     }
