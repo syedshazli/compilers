@@ -35,15 +35,9 @@ bool isAlphaNum(char currentChar)
      return false;
    }
 }
-// FIXME: fix the params?
+
 state getCurrentState(char currentChar, state currentState)
 {
-   // how do we get the current state?
-   // Our states are s1-s6
-   // take in the current character. 
-   // If it's not a valid alphanumeric character, return error state
-   // else, progress to the next state in the enum
-
    
    if(!isAlphaNum(currentChar))
    {
@@ -54,7 +48,7 @@ state getCurrentState(char currentChar, state currentState)
    // FIXME: ALSO add the new way to do FA's, which is sort of loop based or can accept different words
 }
 
-// FIXME: Fix the params?
+
 bool startRecognizer(std::string inputString)
 {
 
@@ -63,7 +57,7 @@ bool startRecognizer(std::string inputString)
     
     int i = 0;
 
-    while(myState != state::serror && i < 6)
+    while(myState != state::serror && i < inputString.size())
     {
       myState = getCurrentState(inputString[i], myState); //FIXME: SHOULD BE IMPLEMENTED
       if(myState == state::serror)
@@ -95,6 +89,8 @@ if(myReturn)
         std::cout<<"This string did not follow our rules, sorry."<<std::endl;
     }
 }
+
+
 bool convertArgvToString(char **argv, std::string &resultingString)
 {
 
@@ -120,11 +116,13 @@ int main(int argc, char **argv){
 
     if(argc != 2 || !convertArgvToString(argv, inputString))
     {
+        
         myReturn = false;
     }
     else
     {
-        // FIXME: ERROR HERE
+
+        // failing on the startRecognizer function
         myReturn = startRecognizer(inputString);
     }
     
