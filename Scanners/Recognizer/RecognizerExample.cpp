@@ -97,11 +97,9 @@ if(myReturn)
 }
 bool convertArgvToString(char **argv, std::string &resultingString)
 {
-// convert the list of argv characters to a string. If the length is greater than 6 then call em out as false
-// otherwise return true.
 
 resultingString = std::string(argv[1]);
-std::cout<<resultingString;
+
 if (resultingString.length() > 6 || resultingString.length() == 0)
 {
     return false;
@@ -119,12 +117,14 @@ int main(int argc, char **argv){
      */
     bool myReturn;
     std::string inputString;
+
     if(argc != 2 || !convertArgvToString(argv, inputString))
     {
         myReturn = false;
     }
     else
     {
+        // FIXME: ERROR HERE
         myReturn = startRecognizer(inputString);
     }
     
