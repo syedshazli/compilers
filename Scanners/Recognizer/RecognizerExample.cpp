@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-
+#include <vector>
 enum class state{
     serror,
     s0, 
@@ -12,15 +12,13 @@ enum class state{
     s6
 };
 
-// these are the accepted states, but it won't be implemented
-// enum class acceptedStates{
+// these are the accepted states
 //     s1 = 1,
 //     s2 = 2,
 //     s3 = 3, 
 //     s4 = 4, 
 //     s5 = 5,
 //     s6 = 6
-// };
 
 bool isAlphaNum(char currentChar)
 {
@@ -36,7 +34,7 @@ bool isAlphaNum(char currentChar)
    }
 }
 
-state getCurrentState(char currentChar, state currentState)
+state checkCurrentState(char currentChar, state currentState)
 {
    
    if(!isAlphaNum(currentChar))
@@ -44,14 +42,27 @@ state getCurrentState(char currentChar, state currentState)
     return state::serror;
    }
 
-   return state::s0; // FIXME: This is a placeholder. We still have not progressed to next state in the enum
-   // FIXME: ALSO add the new way to do FA's, which is sort of loop based or can accept different words
+   return currentState; // FIXME: This is a placeholder. We still have not progressed to next state in the enum
 }
 
+// This function is the meat and potatoes of it all.
+// given the current state, the input string, the current index, and the list of accepted states, either:
+// 1. Go to the next state
+// 2. return true if we're at a accepting state AND at the end of the string
 
-bool startRecognizer(std::string inputString)
+bool goToNextState(std::string inputString, int i, state &currentState)
 {
 
+}
+
+// given the current state, check if this is an accepted state
+bool checkAcceptedStates(state currentState, std::vector<state> acceptedStates)
+{
+
+}
+bool startRecognizer(std::string inputString)
+{
+    std::vector<state> acceptedStates = {state::s1, state::s2, state::s3, state::s4, state::s5, state::s6};
     state myState;
     myState = state::s0;
     
@@ -59,11 +70,19 @@ bool startRecognizer(std::string inputString)
 
     while(myState != state::serror && i < inputString.size())
     {
-      myState = getCurrentState(inputString[i], myState); //FIXME: SHOULD BE IMPLEMENTED
+
+      myState = checkCurrentState(inputString[i], myState);
       if(myState == state::serror)
       {
         return false;
       }
+  
+       goToNextState(inputString, i, myState);
+       // check accepted states
+       if (i == inputString.size() - 1)
+       {
+        return checkAcceptedState(myState, acceptedStates);
+       }
       i +=1;
 
     }
