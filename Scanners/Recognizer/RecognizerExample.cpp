@@ -42,28 +42,35 @@ bool isAlphaNum(char currentChar)
      return false;
    }
 }
-
-state checkCurrentState(char currentChar, state currentState)
+bool isAlphabetic(char currentChar)
+{
+    if ((currentChar >= 'a' && currentChar <= 'z') ||
+        (currentChar >= 'A' && currentChar <= 'Z')) 
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+state checkCurrentState(char currentChar, state currentState, int i)
 {
    
    if(!isAlphaNum(currentChar))
    {
     return state::serror;
    }
+   else if (i == 0 && !isAlphabetic(currentChar))
+   {
+        return state::serror;
+   }
 
-   return currentState; // FIXME: This is a placeholder. We still have not progressed to next state in the enum
+   return currentState;
 }
 
-// This function is the meat and potatoes of it all.
-// given the current state, the input string, the current index:
-// Go to the next state in the enum
-state goToNextState(state currentState, std::vector<state> totalStates)
-{
-    return currentState++;
-}
 
-// given the current state, check if this is an accepted state
-// return true if yes, false if not
+
 bool checkAcceptedState(state currentState, std::set<state> acceptedStates)
 {
     if (acceptedStates.find(currentState) != acceptedStates.end() )
@@ -85,24 +92,18 @@ bool startRecognizer(std::string inputString)
     while(myState != state::serror && i < inputString.size())
     {
 
-      myState = checkCurrentState(inputString[i], myState);
+      myState = checkCurrentState(inputString[i], myState, i);
       if(myState == state::serror)
       {
         return false;
       }
-      // check accepted states if we're at the last character
-       if (i == inputString.size() - 1)
-       {
-        return checkAcceptedState(myState, acceptedStates);
-       }
-       // otherwise, move on to the next state in the enum
-       goToNextState(myState, totalStates);
-       
+
+      myState++;
       i +=1;
 
     }
 
-    if(myState != state::s0 || myState != state::serror )
+    if(checkAcceptedState(myState, acceptedStates))
     {
         return true;
     }
