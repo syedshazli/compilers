@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <set>
 enum class state : int{
     serror,
     s0, 
@@ -63,13 +64,18 @@ state goToNextState(state currentState, std::vector<state> totalStates)
 
 // given the current state, check if this is an accepted state
 // return true if yes, false if not
-bool checkAcceptedState(state currentState, std::vector<state> acceptedStates)
+bool checkAcceptedState(state currentState, std::set<state> acceptedStates)
 {
-    
+    if (acceptedStates.find(currentState) != acceptedStates.end() )
+    {
+        return true;
+    }
+    return false;
 }
+
 bool startRecognizer(std::string inputString)
 {
-    std::vector<state> acceptedStates = {state::s1, state::s2, state::s3, state::s4, state::s5, state::s6};
+    std::set<state> acceptedStates = {state::s1, state::s2, state::s3, state::s4, state::s5, state::s6};
     std::vector<state> totalStates = {state::serror, state::s0, state::s1, state::s2, state::s3, state::s4, state::s5, state::s6};
     state myState;
     myState = state::s0;
