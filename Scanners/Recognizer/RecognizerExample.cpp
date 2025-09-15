@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-enum class state{
+enum class state : int{
     serror,
     s0, 
     s1, 
@@ -11,6 +11,14 @@ enum class state{
     s5, 
     s6
 };
+
+state operator++(state& currentState, int)
+{
+    int convNum = static_cast<int>(currentState);
+    ++convNum;
+    currentState = static_cast<state>(convNum);
+    return currentState;
+}
 
 // these are the accepted states
 //     s1 = 1,
@@ -46,23 +54,23 @@ state checkCurrentState(char currentChar, state currentState)
 }
 
 // This function is the meat and potatoes of it all.
-// given the current state, the input string, the current index, and the list of accepted states, either:
-// 1. Go to the next state
-// 2. return true if we're at a accepting state AND at the end of the string
-
-bool goToNextState(std::string inputString, int i, state &currentState)
+// given the current state, the input string, the current index:
+// Go to the next state in the enum
+state goToNextState(state currentState, std::vector<state> totalStates)
 {
-
+    return currentState++;
 }
 
 // given the current state, check if this is an accepted state
-bool checkAcceptedStates(state currentState, std::vector<state> acceptedStates)
+// return true if yes, false if not
+bool checkAcceptedState(state currentState, std::vector<state> acceptedStates)
 {
-
+    
 }
 bool startRecognizer(std::string inputString)
 {
     std::vector<state> acceptedStates = {state::s1, state::s2, state::s3, state::s4, state::s5, state::s6};
+    std::vector<state> totalStates = {state::serror, state::s0, state::s1, state::s2, state::s3, state::s4, state::s5, state::s6};
     state myState;
     myState = state::s0;
     
@@ -76,13 +84,14 @@ bool startRecognizer(std::string inputString)
       {
         return false;
       }
-  
-       goToNextState(inputString, i, myState);
-       // check accepted states
+      // check accepted states if we're at the last character
        if (i == inputString.size() - 1)
        {
         return checkAcceptedState(myState, acceptedStates);
        }
+       // otherwise, move on to the next state in the enum
+       goToNextState(myState, totalStates);
+       
       i +=1;
 
     }
