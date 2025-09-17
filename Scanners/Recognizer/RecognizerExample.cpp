@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
-#include <vector>
 #include <set>
+// FIXME: Problem is that we just increment state by 1, but the state should be called DIG OR CHAR
+// we can keep iterating on this state
 enum class state : int{
     serror,
     s0, 
@@ -83,7 +84,7 @@ bool checkAcceptedState(state currentState, std::set<state> acceptedStates)
 bool startRecognizer(std::string inputString)
 {
     std::set<state> acceptedStates = {state::s1, state::s2, state::s3, state::s4, state::s5, state::s6};
-    std::vector<state> totalStates = {state::serror, state::s0, state::s1, state::s2, state::s3, state::s4, state::s5, state::s6};
+
     state myState;
     myState = state::s0;
     
