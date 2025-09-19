@@ -14,6 +14,14 @@ enum class state : int{
     s6
 };
 
+// we should use this instead
+// enum class state : int{
+//     sError,
+//     s0, 
+//     sDigitOrAlpha,
+//     sEnd
+// };
+
 state operator++(state& currentState, int)
 {
     int convNum = static_cast<int>(currentState);
