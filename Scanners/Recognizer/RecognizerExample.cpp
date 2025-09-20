@@ -91,7 +91,7 @@ bool checkAcceptedState(state currentState, std::set<state> acceptedStates)
 
 bool startRecognizer(std::string inputString)
 {
-    std::set<state> acceptedStates = {state::s1, state::s2, state::s3, state::s4, state::s5, state::s6};
+    std::set<state> acceptedStates = {state::sEnd};
 
     state myState;
     myState = state::s0;
