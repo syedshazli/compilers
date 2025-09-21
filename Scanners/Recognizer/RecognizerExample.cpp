@@ -1,26 +1,15 @@
 #include <iostream>
 #include <string>
 #include <set>
-// FIXME: Problem is that we just increment state by 1, but the state should be called DIG OR CHAR
-// we can keep iterating on this state
+
+
+
 enum class state : int{
     serror,
     s0, 
-    s1, 
-    s2, 
-    s3, 
-    s4, 
-    s5, 
-    s6
+    sDigitOrAlpha,
+    sEnd
 };
-
-// we should use this instead
-// enum class state : int{
-//     sError,
-//     s0, 
-//     sDigitOrAlpha,
-//     sEnd
-// };
 
 state operator++(state& currentState, int)
 {
@@ -30,13 +19,7 @@ state operator++(state& currentState, int)
     return currentState;
 }
 
-// these are the accepted states
-//     s1 = 1,
-//     s2 = 2,
-//     s3 = 3, 
-//     s4 = 4, 
-//     s5 = 5,
-//     s6 = 6
+
 
 bool isAlphaNum(char currentChar)
 {
@@ -106,8 +89,14 @@ bool startRecognizer(std::string inputString)
       {
         return false;
       }
-
+      if (i == 0 && i != inputString.size()-1)
+      {
       myState++;
+      }
+      else if (i == inputString.size()-1)
+      {
+        myState = state::sEnd;
+      }
       i +=1;
 
     }
