@@ -1,15 +1,10 @@
 #include <iostream>
 #include <string>
 #include <set>
+#include "RecognizerExample.h"
 
 
 
-enum class state : int{
-    serror,
-    s0, 
-    sDigitOrAlpha,
-    sEnd
-};
 
 state operator++(state& currentState, int)
 {
