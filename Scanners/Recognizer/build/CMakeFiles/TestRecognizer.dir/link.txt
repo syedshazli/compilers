@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/TestRecognizer.dir/Tests/testRecognizer.cpp.o -o TestRecognizer

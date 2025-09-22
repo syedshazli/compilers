@@ -1,0 +1,3 @@
+/mnt/c/Users/syeda/Downloads/Compilers/Scanners/Recognizer/build/CMakeFiles/TestRecognizer.dir
+/mnt/c/Users/syeda/Downloads/Compilers/Scanners/Recognizer/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/syeda/Downloads/Compilers/Scanners/Recognizer/build/CMakeFiles/rebuild_cache.dir
