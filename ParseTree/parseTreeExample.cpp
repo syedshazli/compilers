@@ -1,4 +1,9 @@
-class Tree{
+#include <iostream>
+
+struct Node{
     int node;
-    node 
+    Node* next;
+}
+class Tree{
+    Node parent;
 }
