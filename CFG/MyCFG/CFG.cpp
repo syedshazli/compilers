@@ -10,8 +10,14 @@ struct CFG{
 
 };
 
-class Tree{
+// FIXME: Populate with the nodes and all that
+class Node{
 
+    int data;
+    Node* left;
+    Node* right;
+
+    Node() : left(nullptr){}
 };
 
 CFG convertInputToCFG(char **input)
@@ -24,18 +30,22 @@ bool convertCFGToRules(CFG userCFG, std::set <CFG> &outputRules)
 {
 
 }
+
 bool convertCFGToTree(std::set <CFG> outputRules, Tree &userTree)
 {
 
 }
+
 void printTree(Tree CFGTree)
 {
 
 }
+
 void printErrorMessage()
 {
     std::cout<<"Sorry, we couldn't generate a CFG for you. Please fix and try again.";
 }
+
 int main(int argc, char** argv)
 {
     CFG userCFG = convertInputToCFG(argv);
@@ -47,7 +57,7 @@ int main(int argc, char** argv)
     }
 
 
-    // FIXME: Add inputs to function
+
     Tree myTree;
     if (!convertCFGToTree(outputRules, myTree))
     {
