@@ -10,6 +10,15 @@ struct CFG{
 
 };
 
+// FIXME: Is this needed?
+class Tree{
+
+    // intialize tree with node
+    Tree() {
+        Node rootNode;
+    }
+
+};
 // FIXME: Populate with the nodes and all that
 class Node{
 
