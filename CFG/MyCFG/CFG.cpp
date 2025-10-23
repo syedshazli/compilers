@@ -12,26 +12,33 @@ struct CFG{
 
 // FIXME: Is this needed?
 class Tree{
-
+    public:
     // intialize tree with node
-    Tree() {
+        Tree() {
         Node rootNode;
-    }
+        }
 
 };
 // FIXME: Populate with the nodes and all that
 class Node{
+    public:
+        int data;
+        Node* left;
+        Node* right;
 
-    int data;
-    Node* left;
-    Node* right;
-
-    Node() : left(nullptr){}
+        Node() : left(nullptr), right(nullptr){}
 };
 
-CFG convertInputToCFG(char **input)
+CFG convertInputToCFG(int argc, char *input[])
 {
-
+    // for each line of input, add each line to the set of states as a string
+    CFG userCFG;
+    for(int i = 0; i < argc; i++)
+    {
+         userCFG.states.emplace(input[i]);
+    }
+   
+    return userCFG;
 }
 
 // FIXME: Type might not need to be CFG's
@@ -55,9 +62,9 @@ void printErrorMessage()
     std::cout<<"Sorry, we couldn't generate a CFG for you. Please fix and try again.";
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
-    CFG userCFG = convertInputToCFG(argv);
+    CFG userCFG = convertInputToCFG(argc, argv);
     std::set <CFG> outputRules;
 
     if (!convertCFGToRules(userCFG, outputRules))
@@ -68,6 +75,7 @@ int main(int argc, char** argv)
 
 
     Tree myTree;
+    myTree.rootNode.leftNode = nullptr;
     if (!convertCFGToTree(outputRules, myTree))
     {
         printErrorMessage();
