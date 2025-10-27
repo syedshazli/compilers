@@ -58,6 +58,7 @@ void printUserInput(CFG userInput)
 bool convertCFGToRules(CFG userCFG, std::vector <CFG> &outputRules)
 {
 
+    
 }
 
 bool convertCFGToTree(std::vector <CFG> outputRules, Tree &userTree)
@@ -81,23 +82,22 @@ int main(int argc, char* argv[])
     std::vector <CFG> outputRules;
 
     printUserInput(userCFG);
-    return 0;
 
-    // if (!convertCFGToRules(userCFG, outputRules))
-    // {
-    //     printErrorMessage();
-    //     return 0;
-    // }
+    if (!convertCFGToRules(userCFG, outputRules))
+    {
+        printErrorMessage();
+        return 0;
+    }
 
     
 
-    // Tree myTree;
-    // myTree.rootNode.leftNode = nullptr;
-    // if (!convertCFGToTree(outputRules, myTree))
-    // {
-    //     printErrorMessage();
-    // }
+    Tree myTree;
+    myTree.rootNode.leftNode = nullptr;
+    if (!convertCFGToTree(outputRules, myTree))
+    {
+        printErrorMessage();
+    }
 
-    // printTree(myTree);
+    printTree(myTree);
 
 }
