@@ -25,9 +25,7 @@ class Node{
 class Tree{
     public:
     // intialize tree with node
-        Tree() {
         Node rootNode;
-        }
 
 };
 
@@ -58,7 +56,7 @@ void printUserInput(CFG userInput)
 bool convertCFGToRules(CFG userCFG, std::vector <CFG> &outputRules)
 {
 
-    
+
 }
 
 bool convertCFGToTree(std::vector <CFG> outputRules, Tree &userTree)
@@ -92,7 +90,7 @@ int main(int argc, char* argv[])
     
 
     Tree myTree;
-    myTree.rootNode.leftNode = nullptr;
+    myTree.rootNode.left = nullptr;
     if (!convertCFGToTree(outputRules, myTree))
     {
         printErrorMessage();
