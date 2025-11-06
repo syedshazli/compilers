@@ -66,7 +66,10 @@ bool convertCFGToTree(std::vector <CFG> outputRules, Tree &userTree)
 
 void printTree(Tree CFGTree)
 {
-
+    for (auto currNode : CFGTree.rootNode)
+    {
+        
+    }
 }
 
 void printErrorMessage()
