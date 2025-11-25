@@ -68,7 +68,17 @@ void printTree(Tree CFGTree)
 {
     for (auto currNode : CFGTree.rootNode)
     {
-        
+        if (currNode.left() != null || currNode.right() != null)
+        {
+            printTree(currNode.left)
+            printTree(currNode.right)
+        }
+        else{
+             std::cout<<currNode.data<<std::endl;
+     
+        }
+       
+
     }
 }
 
