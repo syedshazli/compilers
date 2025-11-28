@@ -70,8 +70,8 @@ void printTree(Tree CFGTree)
     {
         if (currNode.left() != null || currNode.right() != null)
         {
-            printTree(currNode.left)
-            printTree(currNode.right)
+            printTree(currNode.left);
+            printTree(currNode.right);
         }
         else{
              std::cout<<currNode.data<<std::endl;
