@@ -68,7 +68,7 @@ void printTree(Tree CFGTree)
 {
     for (auto currNode : CFGTree.rootNode)
     {
-        if (currNode.left() != null || currNode.right() != null)
+        if (!currNode.left()  || !currNode.right() )
         {
             printTree(currNode.left);
             printTree(currNode.right);
