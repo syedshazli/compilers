@@ -66,20 +66,19 @@ bool convertCFGToTree(std::vector <CFG> outputRules, Tree &userTree)
 
 void printTree(Tree CFGTree)
 {
-    for (auto currNode : CFGTree.rootNode)
-    {
-        if (!currNode.left()  || !currNode.right() )
+    
+        if (CFGTree.rootNode.left  || CFGTree.rootNode.left )
         {
-            printTree(currNode.left);
-            printTree(currNode.right);
+            printTree(CFGTree.rootNode.left);
+            printTree(CFGTree.rootNode.right );
         }
         else{
-             std::cout<<currNode.data<<std::endl;
+             std::cout<<CFGTree.rootNode.data<<std::endl;
      
         }
        
 
-    }
+    
 }
 
 void printErrorMessage()
@@ -107,6 +106,7 @@ int main(int argc, char* argv[])
     if (!convertCFGToTree(outputRules, myTree))
     {
         printErrorMessage();
+        return 0;
     }
 
     printTree(myTree);
